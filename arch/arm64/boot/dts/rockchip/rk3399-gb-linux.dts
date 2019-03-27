@@ -937,6 +937,34 @@
 
 &pinctrl {
 
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c_scl_pin5 &i2c_sda_pin6 &touch_rst_pin7 &oe_pin8 &fan_ctl_h_pin9>;
+	i2c-scl-pin5 {
+		i2c_scl_pin5: i2c-scl-pin5 {
+			rockchip,pins = <1 12 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+	};
+	i2c-sda-pin6 {
+		i2c_sda_pin6: i2c-sda-pin6 {
+			rockchip,pins = <1 11 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+	};
+	touch-rst-pin7 {
+		touch_rst_pin7: touch-rst-pin7 {
+			rockchip,pins = <1 9 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+	};
+	oe-pin8 {
+		oe_pin8: oe-pin8 {
+			rockchip,pins = <4 29 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+	};
+	fan-ctl-h-pin9 {
+		fan_ctl_h_pin9: fan-ctl-h-pin9 {
+			rockchip,pins = <4 28 RK_FUNC_GPIO &pcfg_output_low>;
+		};
+	};
+
 	sdio0 {
 		sdio0_bus1: sdio0-bus1 {
 			rockchip,pins =
