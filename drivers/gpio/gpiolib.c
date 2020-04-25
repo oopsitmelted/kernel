@@ -128,7 +128,11 @@ static int gpiochip_find_base(int ngpio)
 	struct gpio_chip *chip;
 	int base = ARCH_NR_GPIOS - ngpio;
 
+	pr_debug("%s: ARCH_NR_GPIOS %d\n", __func__, ARCH_NR_GPIOS);
+	pr_debug("%s: ngpio %d\n", __func__, ngpio);
 	list_for_each_entry_reverse(chip, &gpio_chips, list) {
+		pr_debug("%s: chip %s base: %x ngpio: %d\n", __func__, chip->label, 
+			chip->base, chip->ngpio);
 		/* found a free space? */
 		if (chip->base + chip->ngpio <= base)
 			break;

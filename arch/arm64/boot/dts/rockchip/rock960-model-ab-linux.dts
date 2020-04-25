@@ -112,6 +112,7 @@
 		compatible = "regulator-fixed";
 		enable-active-high;
 		gpio = <&gpio4 25 GPIO_ACTIVE_HIGH>;
+		//gpio = <&gpio10 2 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&host_vbus_drv>;
 		regulator-name = "vcc5v0_host";
@@ -196,6 +197,7 @@
 		wifi_chip_type = "ap6354";
 		sdio_vref = <1800>;
 		WIFI,host_wake_irq = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+		//WIFI,host_wake_irq = <&gpio10 3 GPIO_ACTIVE_HIGH>;
 		status = "okay";
 	};
 
@@ -217,6 +219,24 @@
 
 	test-power {
 		status = "okay";
+	};
+
+	chrdev {
+		compatible = "ldddc,chrdev";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		zap-supply = <&testpmic>;
+		
+		chrdev@2 {
+			label = "cdev-eeprom";
+			reg = <2>;
+		};
+
+		chrdev@4 {
+			label = "cdev-rom";
+			reg = <4>;
+			read-only;
+		};
 	};
 };
 
@@ -533,6 +553,31 @@
 
 &i2c6 {
 	status = "okay";
+	i2c-scl-rising-time-ns = <168>;
+	i2c-scl-falling-time-ns = <4>;
+	clock-frequency = <400000>;
+
+	tps68470@4D {
+		compatible = "ti,tps68470";
+		reg = <0x4D>;
+
+		gpio10: gpio10@0 {
+			compatible = "ti,tps68470-gpio";
+
+			gpio-controller;
+			#gpio-cells = <2>;
+		};
+	
+		pmictps: pmic {
+			compatible = "ti,tps68470-regulator";
+			regulators {
+				testpmic: fixed {
+					regulator-name = "vcc3v3_test";
+					//regulator-always-on;
+				};
+			};	
+		};
+	};
 };
 
 &i2c4 {

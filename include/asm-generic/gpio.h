@@ -28,7 +28,7 @@
 #define ARCH_GPIO_BASE		1000
 
 #ifndef ARCH_NR_GPIOS
-#define ARCH_NR_GPIOS		512
+#define ARCH_NR_GPIOS		2048
 #endif
 
 /*

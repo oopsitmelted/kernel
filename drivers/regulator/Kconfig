@@ -768,6 +768,12 @@ config REGULATOR_TPS65912
 	help
 	    This driver supports TPS65912 voltage regulator chip.
 
+config REGULATOR_TPS68470
+	bool "TI TPS68470 Power regulator"
+	depends on MFD_TPS68470
+	help
+	  This driver enables the voltage regulator function and clocks
+
 config REGULATOR_TPS80031
 	tristate "TI TPS80031/TPS80032 power regualtor driver"
 	depends on MFD_TPS80031
