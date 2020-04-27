@@ -557,6 +557,12 @@
 	i2c-scl-falling-time-ns = <4>;
 	clock-frequency = <400000>;
 
+	ht16k33: ht16k33@70 {
+		compatible = "holtek,ht16k33";
+		reg = <0x70>;
+		refresh-rate-hz = <20>;
+	};
+		
 	tps68470@4D {
 		compatible = "ti,tps68470";
 		reg = <0x4D>;
